@@ -33,8 +33,20 @@ public class HomeController : Controller
 
     public IActionResult Details(int id)
     {
-        // will change this to fetch from the database using the ID
-        return View();
+        // fake hotel listing
+        var sampleHotel = new Hotel
+        {
+            Id = id,
+            Name = "Harbourfront",
+            StarRating = 3,
+            Address = "Toronto, ON - 235 Queens Quay W",
+            PricePerNight = 189.00m,
+            RoomsAvailable = 12,
+            Amenities = new List<string> { "Free Wi-Fi", "Pool" },
+            Description = "Free tacos every Tuesday at 4 a:m"
+        };
+
+        return View(sampleHotel);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

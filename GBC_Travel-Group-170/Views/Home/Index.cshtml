@@ -8,3 +8,81 @@
 </div>
 
 <hr />
+<nav aria-label="Search Options">
+    <button type="button">Flights</button>
+    <button type="button">Hotels</button>
+</nav>
+
+<section>
+    <form method="get" action="/Flights/Search">
+        <fieldset>
+            <legend>Flight Search</legend>
+            <label for="from-input">From</label>
+            <input type="text" name="from" id="from-input" value="" placeholder="Toronto (YYZ)"/>
+            
+            <label for="to-input">To</label>
+            <input type="text" name="to" id="to-input" value="" placeholder="Vancouver (YVR)"/>
+            
+            <label for="date-input">Departure Date</label>
+            <input type="date" name="date" id="date-input" value=""/>
+            
+            <label for="passengers-input">Passengers</label>
+            <select id="passengers-input" name="passengers" class="form-select">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <button type="submit">Search Flights</button>
+        </fieldset>
+    </form>
+</section>
+
+<section hidden>
+    <form method="get" action="/Hotels/Search">
+        <fieldset>
+            <legend>Hotel Search</legend>
+            <label for="destination-input">Destination</label>
+            <input type="text" name="destination" id="destination-input" placeholder="City or Hotel Name"/>
+            
+            <label for="checkin-input">Check-in Date</label>
+            <input type="date" name="checkin" id="checkin-input"/>
+            
+            <label for="checkout-input">Check-out Date</label>
+            <input type="date" name="checkout" id="checkout-input"/>
+
+            <button type="submit">Search Hotels</button>
+        </fieldset>
+    </form>
+</section>
+
+<hr/>
+
+<h3>Featured Deals</h3>
+<section>
+    @* find the top three best deals from the database and add them here *@
+    <figure>
+        <img src="" alt="Featured hotel image placeholder" />
+        <h3>Hotel Name Here</h3>
+        <p>$<data value="0">0</data>/ night</p>
+    </figure>
+    
+    <figure>
+        <img src="" alt="Featured hotel image placeholder" />
+        <h3>Hotel Name Here</h3>
+        <p>$<data value="0">0</data>/ night</p>
+    </figure>
+    
+    <figure>
+        <img src="" alt="Featured hotel image placeholder" />
+        <h3>Hotel Name Here</h3>
+        <p>$<data value="0">0</data>/ night</p>
+    </figure>
+</section>

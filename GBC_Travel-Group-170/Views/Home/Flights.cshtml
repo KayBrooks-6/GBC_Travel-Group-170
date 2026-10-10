@@ -3,7 +3,7 @@
 }
 
 <p>Search flights and compare your options</p>
-// container 1 for the input for the search area
+@* container 1 for the input for the search area *@
 <section>
     <form method="get">
         <fieldset>
@@ -36,7 +36,7 @@
     </form>
 </section>
 
-// container for body which holds the filter aside, and the results part
+@* container for body which holds the filter aside, and the results part *@
 <section>
     <aside>
         <h2>Filter</h2>
@@ -66,9 +66,9 @@
         </form>
     </aside>
     
-    // subcontainers for the results
+    @* subcontainers for the results *@
     <section>
-        // top first subcontainer for holding the results found and sorting dropdown bar
+        @* top first subcontainer for holding the results found and sorting dropdown bar *@
         <section>
             <p>@Model.Count() flights found</p>
             <label for="sort-order">Sort by</label>
@@ -78,9 +78,9 @@
             </select>
         </section>
         
-        //second subcontainers to hold the results as rows added by the database
+        @* second subcontainers to hold the results as rows added by the database *@
         <section>
-            //TODO make methods to handle the database code and add here.
+            @* TODO make methods to handle the database code and add here. *@
             @foreach (var flight in Model)
             {
                 <article>
