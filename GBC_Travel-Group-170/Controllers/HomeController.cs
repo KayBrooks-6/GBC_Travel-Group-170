@@ -31,6 +31,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Details(int id)
+    {
+        // will change this to fetch from the database using the ID
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
