@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "title";
+}
+
+<p>Search flights and compare your options</p>
+// container 1 for the input for the search area
+<section>
+    <form method="get">
+        <fieldset>
+            <legend> Flight Search</legend>
+            <label for="from-input">From</label>
+            <input type="text" name="from" id="from-input" value="" placeholder="Toronto (YYZ)"/>
+            
+            <label for="to-input">To</label>
+            <input type="text" name="to" id="to-input" value="" placeholder="Vancouver (YVR)"/>
+            
+            <label for="date-input">Departure Date</label>
+            <input type="date" name="date" id="date-input" value=""/>
+            
+            <label for="passengers-input">Passengers</label>
+            <select id="passengers-input" name="passengers" class="form-select">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </fieldset>
+    </form>
+</section>
+
+// container for body which holds the filter aside, and the results part
+<section>
+    <aside>
+        <h2>Filter</h2>
+        <form method="get">
+            <fieldset>
+                <legend>Price Range</legend>
+                <label for="min-price">Min $</label>
+                <input type="number" id="min-price" name="minPrice" />
+                
+                <label for="max-price">Max $</label>
+                <input type="number" id="max-price" name="maxPrice" />
+            </fieldset>
+            
+            <fieldset>
+                <legend>Airline (optional)</legend>
+                <input type="checkbox" name="airline" id="AirCanada" value="AirCanada" /> 
+                <label for="AirCanada">Air Canada</label>
+                
+                <input type="checkbox" name="airline" id="WestJet" value="WestJet" /> 
+                <label for="WestJet">WestJet</label>
+                
+                <input type="checkbox" name="airline" id="Porter" value="Porter" /> 
+                <label for="Porter">Porter</label>
+                
+                <button type="button">Apply Filters</button>
+            </fieldset>
+        </form>
+    </aside>
+    
+    // subcontainers for the results
+    <section>
+        // top first subcontainer for holding the results found and sorting dropdown bar
+        <section>
+            <p>@Model.Count() flights found</p>
+            <label for="sort-order">Sort by</label>
+            <select id="sort-order" name="sortOrder">
+                <option value="price_low" selected>Price: Low to High</option>
+                <option value="price_high">Price: High to Low</option>
+            </select>
+        </section>
+        
+        //second subcontainers to hold the results as rows added by the database
+        <section>
+            //TODO make methods to handle the database code and add here.
+            @foreach (var flight in Model)
+            {
+                <article>
+                    <section>
+                        <img src="" alt="Airline logo placeholder"/>
+                    </section>
+
+                    <section class="flight-info">
+                        <h4>Air Canada</h4>
+                        <p>AC123</p>
+                    </section>
+
+                    <section class="flight-times">
+                        <p><time>first time</time><time>second time</time></p>
+                        <p>placeholder for flight info code</p>
+                    </section>
+                    
+                    <section class="flight-pricing">
+                        <data value="">$</data>
+                        <a href="">Veiw Details</a>
+                    </section>
+                </article>
+            }
+        </section>
+    </section>
+</section>

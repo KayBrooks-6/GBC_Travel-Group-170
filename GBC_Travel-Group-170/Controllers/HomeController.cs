@@ -22,6 +22,14 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Flights()
+    {
+        return View();
+    }
+    public IActionResult Hotels()
+    {
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
