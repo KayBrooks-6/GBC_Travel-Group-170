@@ -1,6 +1,6 @@
 ﻿using GBC_Travel_Group_170.Models;
 
-namespace GBC_Travel_Group_170.Data; 
+namespace GBC_Travel_Group_170.Data;
 
 public static class DataStore
 {

@@ -1,43 +1,45 @@
-﻿@model GBC_Travel_Group_170.Models.Flight
+﻿@model Flight
 
 @{
     ViewBag.Title = $"Flight {Model.FlightNumber} Details";
     Layout = "_Layout";
 }
 
-<h2>Flight Details</h2>
+<h2 class="mb-3">Flight Details</h2>
 
-<nav>
-    <li><a href="/">Home</a></li>
-    <li><a href="/Flights">Flights</a></li>
-    <li>@Model.AirlineName @Model.FlightNumber</li>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Flights">Flights</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.AirlineName @Model.FlightNumber</li>
+    </ol>
 </nav>
 
 <section>
-    <article>
-        <section>
-            <img src="" alt="Airline logo placeholder"/>
+    <article class="card p-4 shadow-sm">
+        <section class="d-flex align-items-center gap-3 mb-4 border-bottom pb-3">
+            <img src="" alt="Airline logo placeholder" class="border rounded bg-secondary-subtle" style="width: 70px; height: 70px;" />
+            <section class="flight-info">
+                <h4 class="h5 mb-1 fw-bold">@Model.AirlineName</h4>
+                <p class="text-muted mb-0">Flight Number: @Model.FlightNumber</p>
+            </section>
         </section>
 
-        <section class="flight-info">
-            <h4>@Model.AirlineName</h4>
-            <p>Flight Number: @Model.FlightNumber</p>
-        </section>
-
-        <section class="flight-times">
-            <p>
-                Departure: <time>@Model.DepartureTime.ToString("yyyy-MM-dd HH:mm")</time><br />
-                Arrival: <time>@Model.ArrivalTime.ToString("yyyy-MM-dd HH:mm")</time>
+        <section class="flight-times mb-4">
+            <p class="bg-light p-3 rounded text-center">
+                Departure: <time class="fw-bold">@Model.DepartureTime.ToString("yyyy-MM-dd HH:mm")</time><br />
+                Arrival: <time class="fw-bold">@Model.ArrivalTime.ToString("yyyy-MM-dd HH:mm")</time>
             </p>
-            <p>Route: @Model.Origin &rarr; @Model.Destination</p>
+            <p class="text-center fw-semibold text-secondary">Route: @Model.Origin &rarr; @Model.Destination</p>
         </section>
                 
-        <section class="flight-pricing">
-            <data value="@Model.Price">Price: $@Model.Price.ToString("0.00")</data>
+        <section class="flight-pricing d-flex justify-content-between align-items-center border-top pt-3 mb-4">
+            <span class="text-muted">Price:</span>
+            <data value="@Model.Price" class="fs-4 fw-bold text-success">$@Model.Price.ToString("0.00")</data>
         </section>
         
         <section>
-            <a href="/Flights">&larr; Back to Flight Search</a>
+            <a href="/Flights" class="btn btn-outline-dark">&larr; Back to Flight Search</a>
         </section>
     </article>
 </section>

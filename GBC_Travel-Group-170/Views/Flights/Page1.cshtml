@@ -1,19 +1,146 @@
-﻿@model IEnumerable<GBC_Travel_Group_170.Models.Flight>
+﻿@model IEnumerable<Flight>
 
 @{
-    ViewData["Title"] = "Flight Search Results";
+    ViewBag.Title = "Flight Search Results";
 }
 
-<h2>Flight Search Results</h2>
+<header class="text-center mb-4">
+    <h1 class="display-6 fw-bold">Where to next?</h1>
+    <p class="text-muted">Search flights and compare your options.</p>
+</header>
 
-<section>
-    @foreach (var flight in Model)
-    {
-        <article>
-            <h3>@flight.AirlineName (@flight.FlightNumber)</h3>
-            <p>From: @flight.Origin To: @flight.Destination</p>
-            <p>Departure: @flight.DepartureTime</p>
-            <p>Price: $@flight.Price</p>
-        </article>
-    }
+<section class="container my-4">
+    <nav aria-label="Search Options" class="mb-0">
+        <button type="button" class="btn btn-light border border-bottom-0 rounded-bottom-0 px-4 active">Flights</button>
+        <button type="button" class="btn btn-light border border-bottom-0 rounded-bottom-0 px-4 text-muted">Hotels</button>
+    </nav>
+
+    @* container for the body which has the filter box to the side and the results area *@
+    <section class="border p-4 rounded-end rounded-bottom shadow-sm bg-white mb-4">
+        <form method="get" action="/Flights/Search">
+            <fieldset class="border-0">
+                <legend class="visually-hidden">Flight Search</legend>
+                
+                <section class="row g-3 align-items-end">
+                    <section class="col-md-3">
+                        <label for="from-input" class="form-label small text-muted mb-1">From</label>
+                        <input type="text" name="from" id="from-input" value="" placeholder="e.g., Toronto (YYZ)" class="form-control"/>
+                    </section>
+                    
+                    <section class="col-md-3">
+                        <label for="to-input" class="form-label small text-muted mb-1">To</label>
+                        <input type="text" name="to" id="to-input" value="" placeholder="e.g., Vancouver (YVR)" class="form-control"/>
+                    </section>
+                    
+                    <section class="col-md-3">
+                        <label for="date-input" class="form-label small text-muted mb-1">Departure Date</label>
+                        <input type="date" name="date" id="date-input" value="" class="form-control"/>
+                    </section>
+                    
+                    <section class="col-md-2">
+                        <label for="passengers-input" class="form-label small text-muted mb-1">Passengers</label>
+                        <select id="passengers-input" name="passengers" class="form-select">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </section>
+
+                    <section class="col-md-1">
+                        <button type="submit" class="btn btn-dark w-100">Search</button>
+                    </section>
+                </section>
+            </fieldset>
+        </form>
+    </section>
+
+    @* container for body which holds the filter aside, and the results part *@
+    <section class="d-flex gap-4">
+        <aside class="w-25">
+            <h2 class="h5 mb-3">Filter</h2>
+            <form method="get">
+                <fieldset class="border p-3 rounded mb-3 shadow-sm bg-white">
+                    <legend class="h6 text-muted">Price Range</legend>
+                    <label for="min-price" class="form-label small">Min $</label>
+                    <input type="number" id="min-price" name="minPrice" class="form-control mb-2 form-control-sm"/>
+
+                    <label for="max-price" class="form-label small">Max $</label>
+                    <input type="number" id="max-price" name="maxPrice" class="form-control form-control-sm"/>
+                </fieldset>
+
+                <fieldset class="border p-3 rounded shadow-sm bg-white">
+                    <legend class="h6 text-muted mb-2">Airline (optional)</legend>
+                    
+                    <section class="form-check mb-2">
+                        <input type="checkbox" name="airline" id="AirCanada" value="AirCanada" class="form-check-input"/>
+                        <label for="AirCanada" class="form-check-label small">Air Canada</label>
+                    </section>
+
+                    <section class="form-check mb-2">
+                        <input type="checkbox" name="airline" id="WestJet" value="WestJet" class="form-check-input"/>
+                        <label for="WestJet" class="form-check-label small">WestJet</label>
+                    </section>
+
+                    <section class="form-check mb-3">
+                        <input type="checkbox" name="airline" id="Porter" value="Porter" class="form-check-input"/>
+                        <label for="Porter" class="form-check-label small">Porter</label>
+                    </section>
+
+                    <button type="button" class="btn btn-outline-secondary btn-sm w-100">Apply Filters</button>
+                </fieldset>
+            </form>
+        </aside>
+
+        @* subcontainers for the results *@
+        <section class="flex-grow-1">
+            @* top first subcontainer for holding the results found and sorting dropdown bar *@
+            <section class="d-flex justify-content-between align-items-center mb-3 bg-light p-3 rounded">
+                <p class="mb-0 fw-bold">@Model.Count() flights found</p>
+                <section class="d-flex align-items-center gap-2">
+                    <label for="sort-order" class="form-label mb-0 small">Sort by</label>
+                    <select id="sort-order" name="sortOrder" class="form-select form-select-sm d-inline-block w-auto">
+                        <option value="price_low" selected>Price: Low to High</option>
+                        <option value="price_high">Price: High to Low</option>
+                    </select>
+                </section>
+            </section>
+
+            @* second subcontainers to hold the results as rows added by the database *@
+            <section class="d-flex flex-column gap-3">
+                @foreach (var flight in Model)
+                {
+                    <article class="border p-3 rounded shadow-sm d-flex justify-content-between align-items-center bg-white">
+                        <section>
+                            <img src="" alt="Airline logo placeholder" class="border rounded bg-secondary-subtle" style="width: 50px; height: 50px;"/>
+                        </section>
+
+                        <section class="flight-info">
+                            <h4 class="h6 fw-bold mb-1">@flight.AirlineName</h4>
+                            <p class="text-muted small mb-0">@flight.FlightNumber</p>
+                        </section>
+
+                        <section class="flight-times text-center">
+                            <p class="mb-1">
+                                <time class="fw-semibold">@flight.DepartureTime.ToString("HH:mm")</time> &rarr; 
+                                <time class="fw-semibold">@flight.ArrivalTime.ToString("HH:mm")</time>
+                            </p>
+                            <p class="text-muted small mb-0">@flight.Origin &rarr; @flight.Destination</p>
+                        </section>
+
+                        <section class="flight-pricing text-end">
+                            <data value="@flight.Price" class="fs-5 fw-bold text-success d-block mb-1">$@flight.Price.ToString("0.00")</data>
+                            <a href="/Flights/Details/@flight.Id" class="btn btn-sm btn-dark">View Details</a>
+                        </section>
+                    </article>
+                }
+            </section>
+        </section>
+    </section>
 </section>

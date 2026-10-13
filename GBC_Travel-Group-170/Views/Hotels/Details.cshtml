@@ -1,57 +1,65 @@
-﻿@model GBC_Travel_Group_170.Models.Hotel
+﻿@model Hotel
 
 @{
     ViewBag.Title = Model.Name;
     Layout = "_Layout";
 }
 
-<h2>Hotels</h2>
-<nav>
-    <li><a href="/">Home</a></li>
-    <li><a href="/Hotels">Hotels</a></li>
-    <li>@Model.Name</li>
+<h2 class="mb-3">Hotels</h2>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Hotels">Hotels</a></li>
+        <li class="breadcrumb-item active">@Model.Name</li>
+    </ol>
 </nav>
 
-<section>
+<section class="row">
     @* left side *@
-    <section>
-        <img src="" alt="Main first hotel image placeholder" />
+    <section class="col-md-6 mb-4">
+        <img src="" alt="Main first hotel image placeholder" class="img-fluid rounded border mb-3 w-100"
+             style="height: 300px; object-fit: cover;"/>
         <section>
-            <img src="" alt="Thumbnail 1" />
-            <img src="" alt="Thumbnail 2" />
-            <img src="" alt="Thumbnail 3" />
+            <img src="" alt="Thumbnail 1" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;"/>
+            <img src="" alt="Thumbnail 2" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;"/>
+            <img src="" alt="Thumbnail 3" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;"/>
         </section>
     </section>
-    
+
     @* right side *@
-    <section>
-        <header>
-            <h3>@Model.Name</h3>
-            <p>@Model.StarRating-Star rating</p>
-            <p>@Model.Address</p>
+    <section class="col-md-6">
+        <header class="mb-3">
+            <h3 class="h2">@Model.Name</h3>
+            <p class="text-warning fw-semibold mb-1">@Model.StarRating-Star rating</p>
+            <p class="text-muted">@Model.Address</p>
         </header>
-        
-        <section>
-            <data value="@Model.PricePerNight">@Model.PricePerNight</data>
-            <p>Rooms available: <data value="@Model.RoomsAvailable">@Model.RoomsAvailable</data></p>
+
+        <section class="mb-3">
+            <data value="@Model.PricePerNight" class="fs-4 fw-bold text-success">@Model.PricePerNight</data>
+            <p class="text-muted small mt-1">Rooms available:
+                <data value="@Model.RoomsAvailable">@Model.RoomsAvailable</data>
+            </p>
         </section>
-        
-        <section>
-            <h4>Amenities</h4>
-            <ul>
+
+        <section class="mb-3">
+            <h4 class="h5">Amenities</h4>
+            <ul class="list-inline">
                 @foreach (var amenity in Model.Amenities)
                 {
-                    <li><button type="button">@amenity</button></li>
+                    <li class="list-inline-item mb-2">
+                        <button type="button">@amenity</button>
+                    </li>
                 }
             </ul>
         </section>
-        <section>
+
+        <section class="mb-4">
             <p>@Model.Description</p>
         </section>
-        
-        <section>
-            <a href="/Hotels/Search">&larr; Back to Search Results</a>
-            <a href="/Hotels">All Hotels</a>
+
+        <section class="d-flex gap-3">
+            <a href="/Hotels/Search" class="btn btn-outline-dark btn-sm">&larr; Back to Search Results</a>
+            <a href="/Hotels" class="btn btn-secondary btn-sm">All Hotels</a>
         </section>
     </section>
 </section>
