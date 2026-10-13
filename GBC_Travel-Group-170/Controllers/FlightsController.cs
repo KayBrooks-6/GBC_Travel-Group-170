@@ -5,11 +5,8 @@ namespace GBC_Travel_Group_170.Controllers;
 
 public class FlightsController : Controller
 {
-    public IActionResult Index()
+    private readonly List<Flight> _flights = new()
     {
-        // made a few fake flight search results
-        var sampleFlights = new List<Flight>
-        {
             new Flight
             {
                 Id = 1,
@@ -32,8 +29,16 @@ public class FlightsController : Controller
                 Destination = "YVR",
                 Price = 295.50m
             }
-        };
-
-        return View(sampleFlights);
+    };
+    
+    public IActionResult Index() 
+    {
+        return View(_flights);
+    }
+    
+    public IActionResult Details(int id)
+    {
+        var flight = _flights.FirstOrDefault(f => f.Id == id) ?? _flights.First();
+        return View(flight);
     }
 }

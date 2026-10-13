@@ -1,9 +1,11 @@
-﻿@{
-    ViewBag.Title = "title";
+﻿@model IEnumerable<GBC_Travel_Group_170.Models.Flight>
+
+@{
+    ViewBag.Title = "Flight Search Results";
 }
 
 <p>Search flights and compare your options</p>
-@* container 1 for the input for the search area *@
+@* container for the body which has the filter box to the side and the results area *@
 <section>
     <form method="get">
         <fieldset>
@@ -80,7 +82,6 @@
         
         @* second subcontainers to hold the results as rows added by the database *@
         <section>
-            @* TODO make methods to handle the database code and add here. *@
             @foreach (var flight in Model)
             {
                 <article>
@@ -89,18 +90,18 @@
                     </section>
 
                     <section class="flight-info">
-                        <h4>Air Canada</h4>
-                        <p>AC123</p>
+                        <h4>@flight.AirlineName</h4>
+                        <p>@flight.FlightNumber</p>
                     </section>
 
                     <section class="flight-times">
-                        <p><time>first time</time><time>second time</time></p>
-                        <p>placeholder for flight info code</p>
+                        <p><time>@flight.DepartureTime.ToString("HH:mm")</time><time>@flight.ArrivalTime.ToString("HH:mm")</time></p>
+                        <p>@flight.Origin &rarr; @flight.Destination</p>
                     </section>
                     
                     <section class="flight-pricing">
-                        <data value="">$</data>
-                        <a href="">Veiw Details</a>
+                        <data value="@flight.Price">$</data>
+                        <a href="/Flights/Details/@flight.Id">Veiw Details</a>
                     </section>
                 </article>
             }
