@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GBC_Travel_Group_170.Models.Flight>
+
+@{
+    ViewData["Title"] = "Flight Search Results";
+}
+
+<h2>Flight Search Results</h2>
+
+<section>
+    @foreach (var flight in Model)
+    {
+        <article>
+            <h3>@flight.AirlineName (@flight.FlightNumber)</h3>
+            <p>From: @flight.Origin To: @flight.Destination</p>
+            <p>Departure: @flight.DepartureTime</p>
+            <p>Price: $@flight.Price</p>
+        </article>
+    }
+</section>

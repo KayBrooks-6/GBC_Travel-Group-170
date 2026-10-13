@@ -1,0 +1,57 @@
+﻿@model GBC_Travel_Group_170.Models.Hotel
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "_Layout";
+}
+
+<h2>Hotels</h2>
+<nav>
+    <li><a href="/">Home</a></li>
+    <li><a href="/Hotels">Hotels</a></li>
+    <li>@Model.Name</li>
+</nav>
+
+<section>
+    @* left side *@
+    <section>
+        <img src="" alt="Main first hotel image placeholder" />
+        <section>
+            <img src="" alt="Thumbnail 1" />
+            <img src="" alt="Thumbnail 2" />
+            <img src="" alt="Thumbnail 3" />
+        </section>
+    </section>
+    
+    @* right side *@
+    <section>
+        <header>
+            <h3>@Model.Name</h3>
+            <p>@Model.StarRating-Star rating</p>
+            <p>@Model.Address</p>
+        </header>
+        
+        <section>
+            <data value="@Model.PricePerNight">@Model.PricePerNight</data>
+            <p>Rooms available: <data value="@Model.RoomsAvailable">@Model.RoomsAvailable</data></p>
+        </section>
+        
+        <section>
+            <h4>Amenities</h4>
+            <ul>
+                @foreach (var amenity in Model.Amenities)
+                {
+                    <li><button type="button">@amenity</button></li>
+                }
+            </ul>
+        </section>
+        <section>
+            <p>@Model.Description</p>
+        </section>
+        
+        <section>
+            <a href="/Hotels/Search">&larr; Back to Search Results</a>
+            <a href="/Hotels">All Hotels</a>
+        </section>
+    </section>
+</section>

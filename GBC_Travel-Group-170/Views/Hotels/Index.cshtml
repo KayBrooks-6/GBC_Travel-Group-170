@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GBC_Travel_Group_170.Models.Hotel>
+
+@{
+    ViewData["Title"] = "Hotel Search Results";
+}
+
+<h2>Hotels</h2>
+
+<section>
+    @foreach (var hotel in Model)
+    {
+        <article>
+            <h3>@hotel.Name</h3>
+            <p>@hotel.StarRating Stars - @hotel.Address</p>
+            <p>$@hotel.PricePerNight / night</p>
+            <a href="/Hotels/Details/@hotel.Id">View Details</a>
+        </article>
+    }
+</section>

@@ -22,36 +22,23 @@ public class HomeController : Controller
     {
         return View();
     }
+    
     public IActionResult Flights()
     {
-        return View();
+        return View("/Views/Flights/Index.cshtml");
     }
+    
     public IActionResult Hotels()
     {
-        return View();
+        return View("/Views/Hotels/Index.cshtml");
     }
-
-    public IActionResult Details(int id)
-    {
-        // fake hotel listing
-        var sampleHotel = new Hotel
-        {
-            Id = id,
-            Name = "Harbourfront",
-            StarRating = 3,
-            Address = "Toronto, ON - 235 Queens Quay W",
-            PricePerNight = 189.00m,
-            RoomsAvailable = 12,
-            Amenities = new List<string> { "Free Wi-Fi", "Pool" },
-            Description = "Free tacos every Tuesday at 4 a:m"
-        };
-
-        return View(sampleHotel);
-    }
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+
+    
 }

@@ -10,4 +10,5 @@ public class Hotel
     public int RoomsAvailable { get; set; }
     public List<string> Amenities { get; set; }
     public string Description { get; set; }
+    public string ImageUrl { get; set; }
 }
