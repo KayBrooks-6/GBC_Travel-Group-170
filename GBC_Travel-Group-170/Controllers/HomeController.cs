@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GBC_Travel_Group_170.Models;
+using GBC_Travel_Group_170.Data;
 
 namespace GBC_Travel_Group_170.Controllers;
 
@@ -15,7 +16,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return View(DataStore.Hotels);
     }
     
     public IActionResult About()
