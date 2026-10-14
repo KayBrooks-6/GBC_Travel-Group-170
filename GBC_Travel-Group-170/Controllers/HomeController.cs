@@ -8,15 +8,17 @@ namespace GBC_Travel_Group_170.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly TravelDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger,  TravelDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View(DataStore.Hotels);
+        return View(_context.Hotels.ToList());
     }
 
     public IActionResult About()

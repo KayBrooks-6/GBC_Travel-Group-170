@@ -1,44 +1,26 @@
-﻿using GBC_Travel_Group_170.Models;
+﻿using GBC_Travel_Group_170.Data;
+using GBC_Travel_Group_170.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GBC_Travel_Group_170.Controllers;
 
 public class FlightsController : Controller
 {
-    private readonly List<Flight> _flights = new()
+    private readonly TravelDbContext _context;
+
+    public FlightsController(TravelDbContext context)
     {
-        new Flight
-        {
-            Id = 1,
-            AirlineName = "Air Canada",
-            FlightNumber = "AC101",
-            DepartureTime = new DateTime(2026, 6, 1, 8, 0, 0),
-            ArrivalTime = new DateTime(2026, 6, 1, 11, 30, 0),
-            Origin = "YYZ",
-            Destination = "YVR",
-            Price = 350.00m
-        },
-        new Flight
-        {
-            Id = 2,
-            AirlineName = "WestJet",
-            FlightNumber = "WJ405",
-            DepartureTime = new DateTime(2026, 6, 1, 12, 15, 0),
-            ArrivalTime = new DateTime(2026, 6, 1, 15, 45, 0),
-            Origin = "YYZ",
-            Destination = "YVR",
-            Price = 295.50m
-        }
-    };
+        _context = context;
+    }
 
     public IActionResult Index()
     {
-        return View(_flights);
+        return View(_context.Flights.ToList());
     }
 
     public IActionResult Details(int id)
     {
-        var flight = _flights.FirstOrDefault(f => f.Id == id) ?? _flights.First();
+        var flight = _context.Flights.FirstOrDefault(f => f.Id == id) ?? _context.Flights.First();
         return View(flight);
     }
 }

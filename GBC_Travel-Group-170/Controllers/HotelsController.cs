@@ -5,14 +5,20 @@ namespace GBC_Travel_Group_170.Controllers;
 
 public class HotelsController : Controller
 {
+    private readonly TravelDbContext _context;
+
+    public HotelsController(TravelDbContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
-        return View(DataStore.Hotels);
+        return View(_context.Hotels.ToList());
     }
 
     public IActionResult Details(int id)
     {
-        var hotel = DataStore.Hotels.FirstOrDefault(h => h.Id == id) ?? DataStore.Hotels.First();
+        var hotel = _context.Hotels.FirstOrDefault(h => h.Id == id) ?? _context.Hotels.First();
         return View(hotel);
     }
 }
