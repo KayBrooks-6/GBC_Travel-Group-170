@@ -10,7 +10,7 @@
 <section class="container my-4">
 
     @* container for the body which has the filter box to the side and the results area *@
-    <section class="border p-4 rounded-end rounded-bottom shadow-sm bg-white mb-4">
+    <section class="border p-4 rounded-end rounded-bottom shadow-sm mb-4 flight-bar">
         <form method="get" action="/Flights/Index">
             <fieldset class="border-0">
                 <legend class="visually-hidden">Flight Search</legend>
@@ -57,7 +57,7 @@
 
     @* container for body which holds the filter aside, and the results part *@
     <section class="d-flex gap-4">
-        <aside class="w-25">
+        <aside class="w-25 flight-bar">
             <h2 class="h5 mb-3">Filter</h2>
             <form method="get">
                 <fieldset class="border p-3 rounded mb-3 shadow-sm bg-white">
@@ -93,7 +93,7 @@
         </aside>
 
         @* subcontainers for the results *@
-        <section class="flex-grow-1">
+        <section class="flex-grow-1 flight-bar">
             @* top first subcontainer for holding the results found and sorting dropdown bar *@
             <section class="d-flex justify-content-between align-items-center mb-3 bg-light p-3 rounded">
                 <p class="mb-0 fw-bold">@Model.Count() flights found</p>
