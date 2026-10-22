@@ -4,15 +4,15 @@
     ViewData["Title"] = "GBC Travel Home Page";
 }
 
-<header class="text-center mb-4">
-    <h1 class="display-4">Welcome to GBC Travel</h1>
-    <p class="lead">Your online portal for booking flights and hotels.</p>
+<header class="text-center mb-4 p-5 bg-light rounded shadow-sm border">
+    <h1 class="display-4 fw-bold text-primary">Welcome to GBC Travel</h1>
+    <p class="text-muted lead">Your online portal for booking flights and hotels.</p>
 </header>
 
 <hr/>
 <nav aria-label="Search Options" class="text-center mb-4">
-    <button type="button" class="btn btn-outline-primary me-2">Flights</button>
-    <button type="button" class="btn btn-outline-secondary">Hotels</button>
+    <button type="button" class="btn btn-outline-primary me-2 fw-semibold shadow-sm">Flights</button>
+    <button type="button" class="btn btn-outline-secondary px-4 bg-light text-dark border-bottom-0">Hotels</button>
 </nav>
 
 <section class="container my-4">
@@ -22,7 +22,7 @@
     </nav>
 
     <section class="border p-4 rounded-end rounded-bottom shadow-sm bg-white mb-5">
-        <form method="get" action="/Flights/Search">
+        <form method="get" action="/Flights/Index">
             <fieldset class="border-0">
                 <legend class="visually-hidden">Flight Search</legend>
                 
@@ -74,14 +74,14 @@
     @* find the top three best deals from the database and add them here *@
     @foreach (var hotel in Model)
     {
-        <figure class="border p-3 rounded shadow-sm flex-fill text-center">
-            <img src="" alt="Featured hotel image placeholder" class="img-fluid mb-2"/>
-            <h3 class="h5">@hotel.Name</h3>
-            <p>$
+        <figure class="border p-3 rounded shadow-sm flex-fill text-center border-start border-primary border-4 bg-white">
+            <img src="" alt="Featured hotel image placeholder" class="img-fluid mb-2 rounded"/>
+            <h3 class="h5 rounded">@hotel.Name</h3>
+            <p class="text-success fw-semibold">$
                 <data value="@hotel.PricePerNight">@hotel.PricePerNight.ToString("0.00")</data>
                 / night
             </p>
-            <a href="/Hotels/Details/@hotel.Id">View Details</a>
+            <a href="/Hotels/Details/@hotel.Id" class="btn btn-sm btn-outline-primary">View Details</a>
         </figure>
     }
 </section>

@@ -17,7 +17,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<TravelDbContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
     DbInitializer.Initialize(context);
 }
 
