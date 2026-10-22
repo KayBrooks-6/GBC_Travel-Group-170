@@ -1,5 +1,6 @@
 ﻿using GBC_Travel_Group_170.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GBC_Travel_Group_170.Controllers;
 
@@ -11,9 +12,15 @@ public class HotelsController : Controller
     {
         _context = context;
     }
-    public IActionResult Index()
+    public IActionResult Index(string destination, DateTime? checkin, DateTime? checkout)
     {
-        return View(_context.Hotels.ToList());
+        var query = _context.Hotels.AsQueryable();
+        if(!string.IsNullOrEmpty(destination))
+        {
+            query = query.Where(h => EF.Functions.ILike(h.Name, $"%{destination}%") || EF.Functions.ILike(h.Address, $"%{destination}%"));
+        }
+
+        return View(query.ToList());
     }
 
     public IActionResult Details(int id)

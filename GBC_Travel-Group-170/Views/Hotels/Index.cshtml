@@ -6,6 +6,35 @@
 
 <h2 class="mb-4">Hotels</h2>
 
+<section class="border p-4 rounded shadow-sm bg-white mb-4">
+    <form method="get" action="/Hotels/Index">
+        <fieldset class="border-0">
+            <legend class="h4 mb-3 text-primary">Hotel Search</legend>
+                
+            <section class="row g-3 align-items-end">
+                <section class="col-md-5">
+                    <label for="destination-input" class="form-label small text-muted mb-1">Destination</label>
+                    <input type="text" name="destination" id="destination-input" placeholder="City or Hotel Name" class="form-control"/>
+                </section>
+                    
+                <section class="col-md-3">
+                    <label for="checkin-input" class="form-label small text-muted mb-1">Check-in Date</label>
+                    <input type="date" name="checkin" id="checkin-input" class="form-control"/>
+                </section>
+                    
+                <section class="col-md-3">
+                    <label for="checkout-input" class="form-label small text-muted mb-1">Check-out Date</label>
+                    <input type="date" name="checkout" id="checkout-input" class="form-control"/>
+                </section>
+
+                <section class="col-md-1">
+                    <button type="submit" class="btn btn-dark w-100">Search</button>
+                </section>
+            </section>
+        </fieldset>
+    </form>
+</section>
+
 <section class="d-flex flex-column gap-3">
     @foreach (var hotel in Model)
     {
