@@ -14,6 +14,7 @@
             <p class="text-muted mb-1">@hotel.StarRating Stars - @hotel.Address</p>
             <p class="fw-bold text-success mb-3">$@hotel.PricePerNight / night</p>
             <a href="/Hotels/Details/@hotel.Id" class="btn btn-primary btn-sm">View Details</a>
+            <a asp-controller="Bookings" asp-action="Confirmation" asp-route-id="@hotel.Id" class="btn btn-success btn-sm">Book Now</a>
         </article>
     }
 </section>

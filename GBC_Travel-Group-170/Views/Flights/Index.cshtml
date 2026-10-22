@@ -8,10 +8,6 @@
 
 @* container for the body which has the filter box to the side and the results area *@
 <section class="container my-4">
-    <nav aria-label="Search Options" class="mb-0">
-        <button type="button" class="btn btn-primary px-4 fw-semibold shadow-sm">Flights</button>
-        <button type="button" class="btn btn-outline-secondary px-4 bg-light text-dark border-bottom-0">Hotels</button>
-    </nav>
 
     @* container for the body which has the filter box to the side and the results area *@
     <section class="border p-4 rounded-end rounded-bottom shadow-sm bg-white mb-4">
@@ -135,6 +131,7 @@
                         <section class="flight-pricing text-end">
                             <data value="@flight.Price" class="fs-5 fw-bold text-success d-block mb-1">$@flight.Price.ToString("0.00")</data>
                             <a href="/Flights/Details/@flight.Id" class="btn btn-sm btn-dark">View Details</a>
+                            <a asp-controller="Bookings" asp-action="Confirmation" asp-route-id="@flight.Id" class="btn btn-success btn-sm">Book Now</a>
                         </section>
                     </article>
                 }

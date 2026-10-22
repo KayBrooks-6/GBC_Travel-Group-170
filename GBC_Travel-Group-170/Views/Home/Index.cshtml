@@ -10,15 +10,11 @@
 </header>
 
 <hr/>
-<nav aria-label="Search Options" class="text-center mb-4">
-    <button type="button" class="btn btn-outline-primary me-2 fw-semibold shadow-sm">Flights</button>
-    <button type="button" class="btn btn-outline-secondary px-4 bg-light text-dark border-bottom-0">Hotels</button>
-</nav>
 
 <section class="container my-4">
     <nav aria-label="Search Options" class="mb-0">
-        <button type="button" class="btn btn-light border border-bottom-0 rounded-bottom-0 px-4 active">Flights</button>
-        <button type="button" class="btn btn-light border border-bottom-0 rounded-bottom-0 px-4 text-muted">Hotels</button>
+        <a asp-controller="Flights" asp-action="Index" class="btn btn-primary me-2 fw-semibold shadow-sm">Flights</a>
+        <a asp-controller="Hotels" asp-action="Index" class="btn btn-outline-secondary px-4 bg-light text-dark">Hotels</a>
     </nav>
 
     <section class="border p-4 rounded-end rounded-bottom shadow-sm bg-white mb-5">

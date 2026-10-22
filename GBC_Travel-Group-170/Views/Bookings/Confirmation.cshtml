@@ -1,0 +1,35 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<section class="container my-5 text-center">
+    <section class="card p-5 shadow-sm border-0 bg-light">
+        <section class="mb-4">
+            <p class="fs-1 text-success mb-0">&#10004;</p>
+        </section>
+        
+        <h2 class="display-5 fw-bold text-success mb-3">Booking Confirmed!</h2>
+        <p class="lead text-muted mb-4">Thank you for booking with GBC Travel. Your trip is locked in.</p>
+        
+        <article class="card p-3 mb-4 bg-white shadow-sm border-start border-success border-4 text-start mx-auto w-75">
+            @if (Model is GBC_Travel_Group_170.Models.Flight flight)
+            {
+                <h4 class="h5 fw-bold">@flight.AirlineName Flight (@flight.FlightNumber)</h4>
+                <p class="mb-1 text-muted">Route: @flight.Origin &rarr; @flight.Destination</p>
+                <p class="mb-0 text-muted">Departure: @flight.DepartureTime.ToString("yyyy-MM-dd HH:mm")</p>
+            }
+            else if (Model is GBC_Travel_Group_170.Models.Hotel hotel)
+            {
+                <h4 class="h5 fw-bold">@hotel.Name Hotel</h4>
+                <p class="mb-1 text-muted">Address: @hotel.Address</p>
+                <p class="mb-0 text-muted">Price: $@hotel.PricePerNight.ToString("0.00") / night</p>
+            }
+        </article>
+
+        <section>
+            <a href="/" class="btn btn-primary px-4">Return to Home</a>
+        </section>
+    </section>
+</section>
