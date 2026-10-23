@@ -35,15 +35,25 @@
     </form>
 </section>
 
-<section class="d-flex flex-column gap-3">
-    @foreach (var hotel in Model)
-    {
-        <article class="border p-4 rounded shadow-sm hotel-index-cards-custom-css">
-            <h3 class="h4 text-primary">@hotel.Name</h3>
-            <p class="text-muted mb-1">@hotel.StarRating Stars - @hotel.Address</p>
-            <p class="fw-bold text-success mb-3">$@hotel.PricePerNight / night</p>
-            <a href="/Hotels/Details/@hotel.Id" class="btn btn-primary btn-sm">View Details</a>
-            <a asp-controller="Bookings" asp-action="Confirmation" asp-route-id="@hotel.Id" class="btn btn-success btn-sm">Book Now</a>
-        </article>
-    }
-</section>
+@if (!Model.Any())
+{
+    <div class="alert alert-info border-0 shadow-sm p-4" role="alert">
+        <h4 class="alert-heading h5 fw-bold mb-1">No Hotels Found</h4>
+        <p class="mb-0 text-muted">We couldn't find any hotels matching your search criteria. Try searching for a different city or clearing your filters.</p>
+    </div>
+}
+else
+{
+    <section class="d-flex flex-column gap-3">
+        @foreach (var hotel in Model)
+        {
+            <article class="border p-4 rounded shadow-sm hotel-index-cards-custom-css">
+                <h3 class="h4 text-primary">@hotel.Name</h3>
+                <p class="text-muted mb-1">@hotel.StarRating Stars - @hotel.Address</p>
+                <p class="fw-bold text-success mb-3">$@hotel.PricePerNight / night</p>
+                <a href="/Hotels/Details/@hotel.Id" class="btn btn-primary btn-sm">View Details</a>
+                <a asp-controller="Bookings" asp-action="Confirmation" asp-route-id="@hotel.Id" class="btn btn-success btn-sm">Book Now</a>
+            </article>
+        }
+    </section>
+}
