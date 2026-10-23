@@ -14,7 +14,7 @@ public class FlightsController : Controller
         _context = context;
     }
 
-    public IActionResult Index(string from, string to, DateTime? date, int? passengers)
+    public IActionResult Index(string from, string to, DateTime? date, int? passengers, decimal? minPrice, decimal? maxPrice, string[] airline, string sortOrder)
     {
         var query = _context.Flights.AsQueryable();
 
@@ -33,6 +33,35 @@ public class FlightsController : Controller
             var searchDate = DateTime.SpecifyKind(date.Value.Date, DateTimeKind.Utc);
             query = query.Where(f => f.DepartureTime.Date == searchDate);
         }
+        
+        if (minPrice.HasValue)
+        {
+            query = query.Where(f => f.Price >= minPrice.Value);
+        }
+        if (maxPrice.HasValue)
+        {
+            query = query.Where(f => f.Price <= maxPrice.Value);
+        }
+        
+        if (airline != null && airline.Length > 0)
+        {
+            query = query.Where(f => airline.Contains(f.AirlineName));
+        }
+        
+        query = sortOrder switch
+        {
+            "price_high" => query.OrderByDescending(f => f.Price),
+            _ => query.OrderBy(f => f.Price),
+        };
+        
+        ViewBag.From = from;
+        ViewBag.To = to;
+        ViewBag.Date = date?.ToString("yyyy-MM-dd");
+        ViewBag.MinPrice = minPrice;
+        ViewBag.MaxPrice = maxPrice;
+        ViewBag.SelectedAirlines = airline ?? Array.Empty<string>();
+        ViewBag.SortOrder = sortOrder;
+        
         return View(query.ToList());
     }
 
