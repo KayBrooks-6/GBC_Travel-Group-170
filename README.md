@@ -23,6 +23,36 @@ Welcome to **GBC Travel**, a full-stack ASP.NET Core MVC web application built f
 ### Hotel Details & Booking
 ![Hotel Details Screenshot](./screenshots/hotelsSearch.png)
 
+
+## Database Class Diagram
+
+```mermaid
+classDiagram
+    class Flight {
+        +int Id
+        +string AirlineName
+        +string FlightNumber
+        +DateTime DepartureTime
+        +DateTime ArrivalTime
+        +string Origin
+        +string Destination
+        +decimal Price
+    }
+
+    class Hotel {
+        +int Id
+        +string Name
+        +int StarRating
+        +string Address
+        +decimal PricePerNight
+        +int RoomsAvailable
+        +string Amenities
+        +string Description
+        +string ImageUrl
+    }
+```
+
+
 ---
 
 ## Tech Stack
